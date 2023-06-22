@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -15,49 +16,89 @@ public class Main {
             switch (opcion) {
                 case 1:
                     Cuadrado cuadrado = new Cuadrado();
-                    System.out.println("Ingrese el lado del cuadrado:");
-                    cuadrado.lado = scanner.nextDouble();
-                    System.out.println("1.Caclcular perimetro");
-                    System.out.println("2.Caclcular area");
+                    System.out.println("Ingrese los 4 puntos del cuadrado:");
 
+                    for (int i = 0; i < 4; i++) {
+                        System.out.println("Punto " + (i + 1));
+                        System.out.print("x: ");
+                        double x = scanner.nextDouble();
+                        System.out.print("y: ");
+                        double y = scanner.nextDouble();
+                        System.out.print("z: ");
+                        double z = scanner.nextDouble();
+
+                        Punto punto = new Punto(x, y, z);
+                        cuadrado.listaPuntos.add(punto);
+                    }
+
+                    System.out.println("1. Calcular perímetro");
+                    System.out.println("2. Calcular área");
                     poa = scanner.nextInt();
-
                     switch (poa) {
                         case 1:
-                        System.out.println("El perímetro del cuadrado es: " + cuadrado.calcularPerimetro());
+                            System.out.println("El perímetro del cuadrado es: " + cuadrado.calcularPerimetro());
+                            break;
                         case 2:
                             System.out.println("El área del cuadrado es: " + cuadrado.calcularArea());
                             break;
                     }
-
-
+                    break;
 
                 case 2:
                     Circulo circulo = new Circulo();
                     System.out.println("Ingrese el radio del círculo:");
                     circulo.radio = scanner.nextDouble();
-                    System.out.println("1.Caclcular perimetro");
-                    System.out.println("El perímetro del cuadrado es: " + circulo.calcularPerimetro());
-                    System.out.println("2.Caclcular area");
-                    System.out.println("El área del cuadrado es: " + circulo.calcularArea());
+                    System.out.println("1. Calcular perímetro");
+                    System.out.println("2. Calcular área");
+                    poa = scanner.nextInt();
+                    switch (poa) {
+                        case 1:
+                            System.out.println("El perímetro del círculo es: " + circulo.calcularPerimetro());
+                            break;
+                        case 2:
+                            System.out.println("El área del círculo es: " + circulo.calcularArea());
+                            break;
+                    }
                     break;
+
                 case 3:
                     Triangulo triangulo = new Triangulo();
-                    System.out.println("Ingrese los puntos del triángulo:");
+                    System.out.println("Ingrese las coordenadas de los puntos del triángulo:");
+
                     for (int i = 0; i < 3; i++) {
-                        triangulo.ingresarPuntos();
+                        System.out.println("Punto " + (i + 1));
+                        System.out.print("x: ");
+                        double x = scanner.nextDouble();
+                        System.out.print("y: ");
+                        double y = scanner.nextDouble();
+                        System.out.print("z: ");
+                        double z = scanner.nextDouble();
+
+                        Punto punto = new Punto(x, y, z);
+                        triangulo.listaPuntos.add(punto);
                     }
-                    System.out.println("1.Caclcular perimetro");
-                    System.out.println("El perímetro del cuadrado es: " + triangulo.calcularPerimetro());
-                    System.out.println("2.Caclcular area");
-                    System.out.println("El área del cuadrado es: " + triangulo.calcularArea());
+
+                    System.out.println("1. Calcular perímetro");
+                    System.out.println("2. Calcular área");
+                    poa = scanner.nextInt();
+                    switch (poa) {
+                        case 1:
+                            System.out.println("El perímetro del triángulo es: " + triangulo.calcularPerimetro());
+                            break;
+                        case 2:
+                            System.out.println("El área del triángulo es: " + triangulo.calcularArea());
+                            break;
+                    }
                     break;
+
                 case 0:
                     System.out.println("¡Hasta luego!");
                     break;
+
                 default:
                     System.out.println("Opción inválida. Por favor, elija nuevamente.");
             }
         } while (opcion != 0);
     }
 }
+
