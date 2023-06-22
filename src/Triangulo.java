@@ -1,20 +1,17 @@
-public class Triangulo extends Figura{
-    double l3;
-    double l2;
-    double l1;
+public class Triangulo extends Figura {
+    double l1, l2, l3;
+
     @Override
     public double calcularPerimetro() {
-        l1=calcularDistacia(0,1);
-        l2=calcularDistacia(0,2);
-        l3=calcularDistacia(1,2);
-        return l1+l2+l3;
+        l1 = calcularDistancia(0, 1);
+        l2 = calcularDistancia(0, 2);
+        l3 = calcularDistancia(1, 2);
+        return l1 + l2 + l3;
     }
 
     @Override
     public double calcularArea() {
-        double s1=calcularPerimetro()/2;
-        double area=Math(s*(s-l1)*(s-))
-
-        return 0;
-    }
-}
+        double semiperimetro = calcularPerimetro() / 2;
+        double area = Math.sqrt(semiperimetro * (semiperimetro - l1) * (semiperimetro - l2) * (semiperimetro - l3));
+        return area;
+    }}

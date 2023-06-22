@@ -1,24 +1,18 @@
-import java.util.Scanner;
 
-public class Cuadrado extends Figura{
-    double l;
+public class Cuadrado extends Figura {
+    double lado;
+
     @Override
     public double calcularPerimetro() {
-        double perimetro=l*4;
-        return perimetro;
+        return lado * 4;
     }
 
     @Override
     public double calcularArea() {
-        return Math.pow(l,2);
+        return Math.pow(lado, 2);
     }
-
-
-    public void ingresarlado(){
-        Scanner sc=new Scanner(System.in);
-
-    }
-
 }
+
+
 
 
