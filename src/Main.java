@@ -16,19 +16,10 @@ public class Main {
             switch (opcion) {
                 case 1:
                     Cuadrado cuadrado = new Cuadrado();
-                    System.out.println("Ingrese los 4 puntos del cuadrado:");
+                    System.out.println("Ingrese los puntos del cuadrado:");
 
-                    for (int i = 0; i < 4; i++) {
-                        System.out.println("Punto " + (i + 1));
-                        System.out.print("x: ");
-                        double x = scanner.nextDouble();
-                        System.out.print("y: ");
-                        double y = scanner.nextDouble();
-                        System.out.print("z: ");
-                        double z = scanner.nextDouble();
-
-                        Punto punto = new Punto(x, y, z);
-                        cuadrado.listaPuntos.add(punto);
+                    for (int i = 0; i < 2; i++) {
+                        cuadrado.ingresarPuntos();
                     }
 
                     System.out.println("1. Calcular perímetro");
@@ -46,8 +37,17 @@ public class Main {
 
                 case 2:
                     Circulo circulo = new Circulo();
+                    System.out.println("Ingrese el punto centro del círculo:");
+                    System.out.print("x: ");
+                    circulo.centro.setX(scanner.nextDouble());
+                    System.out.print("y: ");
+                    circulo.centro.setY(scanner.nextDouble());
+                    System.out.print("z: ");
+                    circulo.centro.setZ(scanner.nextDouble());
+
                     System.out.println("Ingrese el radio del círculo:");
                     circulo.radio = scanner.nextDouble();
+
                     System.out.println("1. Calcular perímetro");
                     System.out.println("2. Calcular área");
                     poa = scanner.nextInt();
@@ -63,19 +63,10 @@ public class Main {
 
                 case 3:
                     Triangulo triangulo = new Triangulo();
-                    System.out.println("Ingrese las coordenadas de los puntos del triángulo:");
+                    System.out.println("Ingrese los puntos del triángulo:");
 
                     for (int i = 0; i < 3; i++) {
-                        System.out.println("Punto " + (i + 1));
-                        System.out.print("x: ");
-                        double x = scanner.nextDouble();
-                        System.out.print("y: ");
-                        double y = scanner.nextDouble();
-                        System.out.print("z: ");
-                        double z = scanner.nextDouble();
-
-                        Punto punto = new Punto(x, y, z);
-                        triangulo.listaPuntos.add(punto);
+                        triangulo.ingresarPuntos();
                     }
 
                     System.out.println("1. Calcular perímetro");
@@ -98,7 +89,7 @@ public class Main {
                 default:
                     System.out.println("Opción inválida. Por favor, elija nuevamente.");
             }
+
         } while (opcion != 0);
     }
 }
-
