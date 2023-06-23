@@ -49,7 +49,7 @@ public class Main {
                     circulo.radio = scanner.nextDouble();
 
                     System.out.println("1. Calcular perímetro");
-                    System.out.println("2. Calcular área");
+                    System.out.println("2. Calcular áraea");
                     poa = scanner.nextInt();
                     switch (poa) {
                         case 1:
