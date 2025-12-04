@@ -1,0 +1,76 @@
+name: CI - build, test & reports
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-reports:
+    runs-on: ubuntu-latest
+    steps:
+
+      # 1) Obtener código
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2) Configurar Java 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: 'maven'
+
+      # 3) Opcional: cache de dependencias Maven (alternativa al cache integrado de setup-java)
+      - name: Cache Maven local repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-m2-
+
+      # 4) Build (compilar e instalar)
+      - name: Build (mvn clean install)
+        run: mvn -B -V clean install
+
+      # 5) Run unit tests (mvn test)
+      - name: Run unit tests (mvn test)
+        run: mvn -B test
+
+      # 6) Generate JaCoCo report (if plugin configured in pom.xml)
+      - name: Generate JaCoCo report
+        run: mvn -B jacoco:report
+
+      # 7) Generate Checkstyle report
+      - name: Generate Checkstyle report
+        run: mvn -B checkstyle:checkstyle
+
+      # 8) Generate PMD + CPD reports
+      - name: Generate PMD reports (pmd + cpd)
+        run: mvn -B pmd:pmd pmd:cpd
+
+      # 9) Collect site reports (optionally run mvn site to aggregate)
+      - name: Generate site (optional aggregator)
+        run: mvn -B site
+
+      # 10) Show summary in logs (helpful)
+      - name: Show build summary (ls target/site)
+        run: |
+          echo "=== target/site contents ==="
+          ls -la target/site || true
+          echo "=== jacoco dir ==="
+          ls -la target/site/jacoco || true
+
+      # 11) Upload HTML reports as artifacts
+      - name: Upload HTML reports (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-reports
+          path: |
+            target/site/**
+            target/jacoco.exec
+            target/*.xml
+
