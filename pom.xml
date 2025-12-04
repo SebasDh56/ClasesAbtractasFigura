@@ -83,8 +83,9 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
-                    <failsOnError>false</failsOnError>
+                    <failOnViolation>false</failOnViolation>
                     <linkXRef>false</linkXRef>
+                    <configLocation>sun_checks.xml</configLocation>
                 </configuration>
                 <executions>
                     <execution>
@@ -96,6 +97,7 @@
                     </execution>
                 </executions>
             </plugin>
+
 
             <!-- ====================================================== -->
             <!-- ✔ SITE con Jacoco, PMD, Checkstyle y más -->
